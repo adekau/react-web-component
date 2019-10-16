@@ -64,7 +64,7 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
         this._onDestroy();
       }
 
-      private _createComponent() {
+      public _createComponent() {
         return React.createElement(
           config.component,
           Object.keys(this).reduce((acc: { [key: string]: any }, val: string) => {

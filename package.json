@@ -1,8 +1,8 @@
 {
   "name": "@dekau/react-web-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert react components to web components",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },
