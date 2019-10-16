@@ -1,33 +1,25 @@
 {
   "name": "@dekau/react-web-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Convert react components to web components",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
-    "@elastic/charts": "^13.3.0",
-    "@elastic/datemath": "^5.0.2",
-    "@elastic/eui": "^14.4.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@types/jasmine": "~3.3.8",
-    "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.10.55",
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
-    "codelyzer": "^5.0.0",
-    "enzyme": "^3.10.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0"
   },
   "peerDependencies": {
-    "typescript": "^3.2.4",
-    "moment": "^2.18.1"
+    "typescript": "^3.2.4"
   },
   "repository": {
     "type": "git",

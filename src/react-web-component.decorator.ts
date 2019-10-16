@@ -13,7 +13,11 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
       public static readonly defaults: TProp = config.propDefaults;
 
       // instanced class vars
-      public readonly _shadowStyle: HTMLLinkElement = document.createElement('link');
+      public readonly _shadowStyles: HTMLLinkElement[] = config.styleUrls.map((url: string) => {
+        const elem: HTMLLinkElement = document.createElement('link');
+        Object.assign(elem, { rel: 'stylesheet', type: 'text/css', href: url });
+        return elem;
+      });
       public readonly _defaults: TProp = Object.assign({}, __WebComponent.defaults);
       public _onInit = this['onInit'] || noOp;
       public _onDestroy = this['onDestroy'] || noOp;
@@ -29,20 +33,21 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
       }
 
       public connectedCallback(): void {
-        Object.assign(this._shadowStyle, { rel: 'stylesheet', type: 'text/css', href: 'assets/eui_theme_light.css' });
         let root: any;
         if (config.shadowDom) {
           root = this['attachShadow']({ mode: 'open' });
           // used by react for where the document root is
           Object.defineProperty(root, "ownerDocument", { value: root });
-          // reactdom assumes these functions exist (normally document root is 'document')
+          // react-dom assumes these functions exist (normally document root is 'document')
           root.createElement = (...args: any[]) => document.createElement.apply(root, args);
           root.createTextNode = (...args: any[]) => document.createTextNode.apply(root, args);
         } else {
           root = this;
         }
         this.mountPoint.id = "__shadowReact_element";
-        root.appendChild(this._shadowStyle);
+        this._shadowStyles.forEach((shadowStyle: HTMLLinkElement) => {
+          root.appendChild(shadowStyle);
+        });
         if (config.styles) {
           const style = document.createElement('style');
           style.textContent = config.styles;

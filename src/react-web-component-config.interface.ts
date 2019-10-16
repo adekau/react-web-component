@@ -3,4 +3,5 @@ export interface IReactWebComponentConfig<TProp> {
   propDefaults: TProp;
   shadowDom?: boolean;
   styles?: string;
+  styleUrls?: string[];
 }
