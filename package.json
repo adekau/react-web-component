@@ -1,6 +1,6 @@
 {
   "name": "@dekau/react-web-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert react components to web components",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^8.10.55",
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "codelyzer": "^5.0.0",
