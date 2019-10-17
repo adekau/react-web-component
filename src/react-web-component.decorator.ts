@@ -21,6 +21,7 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
       public readonly _defaults: TProp = Object.assign({}, __WebComponent.defaults);
       public _onInit = this['onInit'] || noOp;
       public _onDestroy = this['onDestroy'] || noOp;
+      public _attributeChanged = this['attributeChanged'] || noOp;
       
       public static get observedAttributes() {
         return Object.keys(__WebComponent.defaults);
@@ -81,6 +82,7 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
 
       public attributeChangedCallback(name: string, oldVal: unknown, newVal: unknown): void {
         ReactDOM.render(this._createComponent(), this.mountPoint);
+        this._attributeChanged(name, oldVal, newVal);
       } 
     }
   }
@@ -90,10 +92,9 @@ export function ReactWebComponent<TProp>(config: IReactWebComponentConfig<TProp>
 function createPropGettersAndSetters<T extends object>(props: T): void {
   Object.keys(props).map((key: string) => {
     const val = props[key];
-    type propType = typeof val;
     Object.defineProperty(this, key, {
       get: () => this.getAttribute(key) || val,
-      set: (newVal: propType) => this.setAttribute(key, newVal),
+      set: (newVal: any) => this.setAttribute(key, newVal),
       enumerable: true,
       configurable: true
     });
