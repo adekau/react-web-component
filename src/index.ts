@@ -1,5 +1,6 @@
 export {
-  IReactWebComponent
+  IReactWebComponent,
+  ReactWebComponentWithProps
 } from './react-web-component.interface';
 export {
   IReactWebComponentConfig
