@@ -11,4 +11,4 @@ type Merge<A, B> = {
   [K in keyof A]: K extends keyof B ? B[K] : A[K]
 } & B;
 
-export type ReactWebComponent<TProp = any> = Merge<IReactWebComponent<TProp>, TProp>;
+export type ReactWebComponentWithProps<TProp = any> = Merge<IReactWebComponent<TProp>, TProp>;
